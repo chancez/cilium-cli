@@ -154,6 +154,14 @@ func (k *K8sInstaller) generateManifests(ctx context.Context) error {
 		panic("unsupported version")
 	}
 
+	// Overwrite helm options with user-defined options
+	for k, v := range k.params.HelmOpts {
+		if v == "" {
+			return fmt.Errorf("empty value form helm option %q", k)
+		}
+		helmMapOpts[k] = v
+	}
+
 	var helmOpts []string
 	for k, v := range helmMapOpts {
 		if v == "" {

@@ -217,6 +217,11 @@ type Parameters struct {
 	// HelmChartDirectory points to the location of a helm chart directory.
 	// Useful to test from upstream where a helm release is not available yet.
 	HelmChartDirectory string
+
+	// HelmOpts is a map of user-defined helm options. It can be useful to
+	// overwrite certain options in case we are testing out Cilium cli with
+	// a helm chart that has not been released yet.
+	HelmOpts map[string]string
 }
 
 type rollbackStep func(context.Context)
